@@ -21,3 +21,21 @@ state.head()
 cny = state.loc[["California", "New York"]]
 
 cny
+
+t_stat, p_value = stats.ttest_ind(cny["Relocated Within State"], cny["Relocated Between States"])
+
+print("t-statistic:", t_stat)
+print("p-value:", p_value)
+
+d = control[(control["State"] == "California") | (variant["State"] == "New York")]
+
+cny2 = pd.DataFrame()
+cny2["Total U.S. Citizens (Naturalized)"] = d.groupby("State")["Total US Citizens (Naturalized)"].sum()
+cny2["Total Non-Citizens"] = d.groupby("State")["Total Non-Citizens"].sum()
+
+cny2
+
+t_stat, p_value = stats.ttest_ind(cny2["Total U.S. Citizens (Naturalized)"], cny2["Total Non-Citizens"])
+
+print("t-statistic:", t_stat)
+print("p-value:", p_value)
