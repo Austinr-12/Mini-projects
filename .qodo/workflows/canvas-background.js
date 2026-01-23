@@ -1,8 +1,11 @@
 // canvas-background.js
 
 (() => {
-  const canvas = document.getElementById("canvas-background"); // gets a reference to the HTML <canvas> element
-  const context = canvas.getContext("2d"); // get the rendering context for the canvas
+  // gets a reference to the HTML <canvas> element
+  const canvas = document.getElementById("canvas-background");
+
+  // get the rendering context for the canvas
+  const context = canvas.getContext("2d");
 
   // get document's width and height
   const width = window.innerWidth;
@@ -11,6 +14,11 @@
   // set background to be fullscreen
   canvas.width = width;
   canvas.height = height;
+
+  const numOfStars = 50;
+
+  // helper function for generating random numbers between two values
+  const random = (min, max) => Math.random() * (max - min) + min;
 
   const drawBackground = () => {
     // The inner circle is at x=0, y=0, with radius=height
@@ -36,6 +44,21 @@
     context.fillRect(0, height * 0.955, width, height);
   };
 
+  const drawStars = () => {
+    let countOfStars = numOfStars;
+
+    context.fillStyle = "#E6E6FA";
+
+    while (countOfStars--) {
+      const x = random(25, width - 50);
+      const y = random(25, height * 0.5);
+      const size = random(1, 4);
+
+      context.fillRect(x, y, size, size);
+    }
+  };
+
   drawBackground();
   drawForeground();
+  drawStars();
 })();
