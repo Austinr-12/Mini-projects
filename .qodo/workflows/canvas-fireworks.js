@@ -22,3 +22,21 @@
     anchorY: 0,
   };
 })();
+
+// canvas-fireworks.js
+
+const drawAnchor = () => {
+  // get the position for the anchor on the canvas
+  positions.anchorX = width / 2;
+  positions.anchorY = height * 0.9;
+
+  context.clearRect(0, 0, width, height);
+
+  // save context to remove transformation afterwards
+  context.save();
+
+  context.translate(positions.anchorX, positions.anchorY);
+
+  // restores the empty context state
+  context.restore();
+};
