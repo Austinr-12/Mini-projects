@@ -160,3 +160,16 @@ class Firework {
     init();
   }
 }
+
+const loop = () => {
+  requestAnimationFrame(loop); // call the loop function indefinitely and redraw the screen every frame
+  drawAnchor();
+  if (mouseClicked) {
+    fireworks.push(new Firework());
+  }
+
+  let fireworkIndex = fireworks.length;
+  while (fireworkIndex--) {
+    fireworks[fireworkIndex].draw(fireworkIndex);
+  }
+};
