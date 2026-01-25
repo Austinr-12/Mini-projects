@@ -81,3 +81,82 @@
     loop();
   });
 })();
+
+class Firework {
+  constructor() {
+    const init = () => {
+      let fireworkLength = 8;
+
+      // current coordinates
+      this.x = positions.anchorX;
+      this.y = positions.anchorY;
+
+      // target coordinates
+      this.target_x = positions.mouseX;
+      this.target_y = positions.mouseY;
+
+      // distance from starting point to target
+      this.distanceToTarget = getDistance(
+        this.x,
+        this.y,
+        this.target_x,
+        this.target_y
+      );
+      this.distanceTraveled = 0;
+
+      this.coordinates = [];
+      this.angle = Math.atan2(
+        this.target_y - positions.anchorY,
+        this.target_x - positions.anchorX
+      );
+      this.speed = 15;
+      this.friction = 0.99;
+      this.hue = random(0, 360);
+
+      while (fireworkLength--) {
+        this.coordinates.push([this.x, this.y]);
+      }
+    };
+
+    this.animate = (index) => {
+      this.coordinates.pop();
+      this.coordinates.unshift([this.x, this.y]);
+
+      this.speed *= this.friction;
+
+      let velocity_x = Math.cos(this.angle) * this.speed;
+      let velocity_y = Math.sin(this.angle) * this.speed;
+
+      this.distanceTraveled = getDistance(
+        positions.anchorX,
+        positions.anchorY,
+        this.x + velocity_x,
+        this.y + velocity_y
+      );
+
+      if (this.distanceTraveled >= this.distanceToTarget) {
+        let i = numberOfFlecks;
+        fireworks.splice(index, 1);
+      } else {
+        this.x += velocity_x;
+        this.y += velocity_y;
+      }
+    };
+
+    this.draw = (index) => {
+      context.beginPath();
+      context.moveTo(
+        this.coordinates[this.coordinates.length - 1][0],
+        this.coordinates[this.coordinates.length - 1][1]
+      );
+      context.lineTo(this.x, this.y);
+
+      context.strokeStyle = `hsl(${this.hue}, 100%, 50%)`;
+      context.stroke();
+
+      this.animate(index);
+    };
+
+    init();
+  }
+}
