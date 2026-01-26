@@ -41,6 +41,7 @@ h1 {
   );
   background-size: 50% auto;
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: gradientAnimation 7.5s ease alternate infinite;
 }
