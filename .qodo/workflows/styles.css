@@ -1,21 +1,19 @@
-@import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Work+Sans&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans&display=swap');
 
 body {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  font-family: "Pacifico", cursive;
+  font-family: 'Pacifico', cursive;
   color: #fff;
 }
 
-h1,
-p {
+h1, p {
   padding: 0;
   margin: 0;
 }
 
-/* add this */
 .text-container {
   display: flex;
   flex-direction: column;
@@ -28,7 +26,6 @@ p {
   align-items: center;
 }
 
-/* extend this */
 h1 {
   z-index: 2;
   text-transform: uppercase;
@@ -44,12 +41,10 @@ h1 {
   );
   background-size: 50% auto;
   -webkit-background-clip: text;
-  background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: gradientAnimation 7.5s ease alternate infinite;
 }
 
-/* add this */
 @keyframes gradientAnimation {
   to {
     background-position: 100% top;
@@ -60,7 +55,7 @@ p {
   z-index: 2;
   text-transform: uppercase;
   font-size: 1.5vw;
-  font-family: "Work Sans", sans-serif;
+  font-family: 'Work Sans', sans-serif;
 }
 
 img {
@@ -76,8 +71,7 @@ img {
   justify-content: center;
 }
 
-img,
-canvas {
+img, canvas {
   cursor: pointer;
   position: absolute;
 }

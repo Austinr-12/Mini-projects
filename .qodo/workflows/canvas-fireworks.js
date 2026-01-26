@@ -1,13 +1,7 @@
-// canvas-fireworks.js
-
 (() => {
   // Generic Canvas Setup
-
-  // gets a reference to the HTML <canvas> element
-  const canvas = document.getElementById("canvas-fireworks");
-
-  // get the rendering context for the canvas
-  const context = canvas.getContext("2d");
+  const canvas = document.getElementById('canvas-fireworks'); // gets a reference to the HTML <canvas> element
+  const context = canvas.getContext('2d'); // get the rendering context for the canvas
 
   // get document's width and height
   const width = window.innerWidth;
@@ -65,14 +59,14 @@
   const attachEventListeners = () => {
     // listen to the mousemove event and
     // set the mouse positions to the correct coordinates
-    canvas.addEventListener("mousemove", (e) => {
+    canvas.addEventListener('mousemove', (e) => {
       positions.mouseX = e.pageX;
       positions.mouseY = e.pageY;
     });
 
     // track mouse click events
-    canvas.addEventListener("mousedown", () => (mouseClicked = true));
-    canvas.addEventListener("mouseup", () => (mouseClicked = false));
+    canvas.addEventListener('mousedown', () => (mouseClicked = true));
+    canvas.addEventListener('mouseup', () => (mouseClicked = false));
   };
 
   const loop = () => {
@@ -103,7 +97,7 @@
     }
   };
 
-  window.addEventListener("load", () => {
+  window.addEventListener('load', () => {
     attachEventListeners();
     loop();
   });
